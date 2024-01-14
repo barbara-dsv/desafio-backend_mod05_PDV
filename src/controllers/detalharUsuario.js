@@ -1,5 +1,4 @@
-const detalharPerfil = async (req, res) => {
+const detalharUsuario = async (req, res) => {
     return res.status(200).json(req.usuario);
 }
-
-module.exports = detalharPerfil
+module.exports = detalharUsuario

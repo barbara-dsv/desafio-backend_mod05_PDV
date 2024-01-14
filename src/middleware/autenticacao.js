@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const knex = require('knex');
+const knex = require('../db/conexao')
 
 const auth = async (req, res, next) => {
   const { authorization } = req.headers
@@ -14,7 +14,7 @@ const auth = async (req, res, next) => {
 
       const { id } = jwt.verify(token, process.env.HASH);
 
-      const usuarioEncontrado = await knex('usuarios').where({id}).first()
+      const usuarioEncontrado = await knex('usuarios').where({ id }).first()
 
       if(!usuarioEncontrado){
             return res.status(404).json({
@@ -22,12 +22,14 @@ const auth = async (req, res, next) => {
             });
       }
 
-      const { senha, ...usuario } = rows[0];
+      const { senha, ...usuario } = usuarioEncontrado;
 
-      req.usuario = usuario;
+      req.usuario = usuario
 
       next()
+
   } catch (error) {
+    console.log(error);
         return res.status(500).json({ 
           mensagem: 'Erro interno do servidor' 
         });
