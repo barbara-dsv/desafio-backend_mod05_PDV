@@ -19,6 +19,6 @@ rotas.post('/login', validacaoReq(schemaLoginUsuario), login)
 
 rotas.use(auth)
 
-rotas.get('/detalharUser', detalharPerfil)
+rotas.get('/usuario', detalharPerfil)
 
 module.exports = rotas
