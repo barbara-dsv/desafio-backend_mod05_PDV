@@ -1,21 +1,21 @@
 const bcrypt = require('bcrypt');
 const knex = require('../db/conexao');
 
-const cadastrar = async (req,res)=>{
+const cadastrar = async (req, res) => {
   const { nome, email, senha } = req.body
-  
+
 
   try {
 
     const emailRegistrado = await knex('usuarios').where({ email }).first();
 
-    if(emailRegistrado) {
+    if (emailRegistrado) {
       return res.status(400).json({
         mensagem: 'Email já cadastrado.'
       })
     }
 
-    const senhaCriptografada = await bcrypt.hash(senha,10);
+    const senhaCriptografada = await bcrypt.hash(senha, 10);
 
     const usuario = await knex('usuarios').insert({
       nome,
@@ -23,7 +23,9 @@ const cadastrar = async (req,res)=>{
       senha: senhaCriptografada
     }).returning('*')
 
-    return res.status(201).json(usuario)
+    const { senha: _, ...usuarioCadastrado } = usuario[0]
+
+    return res.status(201).json(usuarioCadastrado)
 
   } catch (error) {
     console.log(error);
