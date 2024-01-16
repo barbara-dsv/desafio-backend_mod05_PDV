@@ -10,18 +10,20 @@ const { cadastrar } = require('./controllers/cadastrarUsuario');
 const { login } = require('./controllers/loginUsuario');
 const detalharPerfil = require('./controllers/detalharUsuario');
 const { editarUsuario } = require('./controllers/editarUsuario')
+const listarCategorias = require('./controllers/listarCategorias');
 
 
 const rotas = express();
 
+rotas.get('/categoria', listarCategorias);
 rotas.post('/usuario', validacaoReq(schemaCadastroUsuario), cadastrar);
 
-rotas.post('/login', validacaoReq(schemaLoginUsuario), login)
+rotas.post('/login', validacaoReq(schemaLoginUsuario), login);
 
-rotas.use(auth)
+rotas.use(auth);
 
-rotas.get('/usuario', detalharPerfil)
+rotas.get('/usuario', detalharPerfil);
 
-rotas.put('/usuario', auth, editarUsuario)
+rotas.put('/usuario', auth, editarUsuario);
 
 module.exports = rotas
