@@ -10,7 +10,7 @@ const login = async (req, res) => {
 
     if (!usuario) {
       return res.status(400).json({
-        mensagem: 'Email informado não cadastrado.'
+        mensagem: 'Email ou senha não conferem'
       })
     }
 
