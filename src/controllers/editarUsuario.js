@@ -1,36 +1,46 @@
-const jwt = require('jsonwebtoken');
 const knex = require('../db/conexao');
+const bcrypt = require('bcrypt')
 
 const editarUsuario = async (req, res) => {
   const { nome, email, senha } = req.body;
+  const { id } = req.usuario;
+
+  if (!nome && email && senha) {
+    return res.status(400).json({ message: 'Por favor, forneça nome, email e senha para a atualização.' });
+  }
 
   try {
-    if (!nome || !email || !senha) {
-      return res.status(400).json({ message: 'Por favor, forneça nome, email e senha para a atualização.' });
+    const usuarioExiste = await knex('usuarios').where({ id }).first();
+
+
+    if (!usuarioExiste) {
+      return res.status(404).json({ mensagem: 'Usuario não encontrado' });
+    }
+    const senhaCriptografada = await bcrypt.hash(senha, 10);
+
+    if (email && email !== req.usuario.email) {
+      const emailUsuarioExiste = await knex('usuarios')
+        .where('email', email)
+        .first();
+
+      if (emailUsuarioExiste) {
+        return res.status(400).json({ mensagem: 'O Email já existe.' });
+      }
     }
 
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, 'privatekeyJWT');
-    const userId = decodedToken.id;
-
     const usuarioAtualizado = await knex('usuarios')
-      .where('id', userId)
+      .where({ id })
       .update({
         nome: nome,
         email: email,
-        senha: senha,
-      });
+        senha: senhaCriptografada,
+      }).returning('*');
 
-    if (usuarioAtualizado > 0) {
-      return res.status(200).json({ mensagem: 'Usuário atualizado com sucesso.' });
-    } else {
-      return res.status(404).json({ mensagem: 'Usuário não encontrado.' });
-    }
+    const { senha: _, ...usuario } = usuarioAtualizado[0]
+
+    return res.status(200).json(usuario)
+
   } catch (error) {
-    console.log(error);
-    if (error.name === 'JsonWebTokenError') {
-      return res.status(401).json({ mensagem: 'Token inválido.' });
-    }
     return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
 };
