@@ -16,6 +16,7 @@ const listarCategorias = require('./controllers/listarCategorias');
 const rotas = express();
 
 rotas.get('/categoria', listarCategorias);
+
 rotas.post('/usuario', validacaoReq(schemaCadastroUsuario), cadastrar);
 
 rotas.post('/login', validacaoReq(schemaLoginUsuario), login);
@@ -24,6 +25,6 @@ rotas.use(auth);
 
 rotas.get('/usuario', detalharPerfil);
 
-rotas.put('/usuario', auth, editarUsuario);
+rotas.put('/usuario', editarUsuario);
 
 module.exports = rotas
