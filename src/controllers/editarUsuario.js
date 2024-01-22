@@ -14,9 +14,9 @@ const editarUsuario = async (req, res) => {
   try {
 
     if (email) {
-      const emailJaCadatrado = await knex('usuarios').where({ email }).first();
+      const emailJaCadastrado = await knex('usuarios').where({ email }).first();
 
-      if (emailJaCadatrado) {
+      if (emailJaCadastrado) {
         return res.status(400).json({
           mensagem: 'Email informado já pertence a outra conta.'
         })
