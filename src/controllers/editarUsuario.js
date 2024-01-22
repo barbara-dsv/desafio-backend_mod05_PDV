@@ -1,11 +1,11 @@
 const bcrypt = require('bcrypt')
 const knex = require('../db/conexao')
 
-const editarUsuario = async ( req, res ) =>{
-  const { nome , email, senha } = req.body;
+const editarUsuario = async (req, res) => {
+  const { nome, email, senha } = req.body;
   let senhaCript
-  
-  if(!nome && !email && !senha){
+
+  if (!nome && !email && !senha) {
     return res.status(400).json({
       mensagem: 'Ao menos um campo deve ser informado.'
     })
@@ -13,36 +13,36 @@ const editarUsuario = async ( req, res ) =>{
 
   try {
 
-    if(email){
-    const emailJaCadatrado = await knex( 'usuarios' ).where({ email }).first();
+    if (email) {
+      const emailJaCadatrado = await knex('usuarios').where({ email }).first();
 
-    if(emailJaCadatrado){
-      return res.status(400).json({
-        mensagem: 'Email informado já pertence a outra conta.'
-      })
+      if (emailJaCadatrado) {
+        return res.status(400).json({
+          mensagem: 'Email informado já pertence a outra conta.'
+        })
+      }
+
     }
 
-  }
 
-  
-  if(senha){
-     senhaCript = await bcrypt.hash(senha,10);
-  }
-    
-    const usuarioAtulizado = await knex('usuarios').where({ id: req.usuario.id}).update({
+    if (senha) {
+      senhaCript = await bcrypt.hash(senha, 10);
+    }
+
+    const usuarioAtulizado = await knex('usuarios').where({ id: req.usuario.id }).update({
       nome,
       email,
       senha: senhaCript
     })
 
-    if(!usuarioAtulizado){
+    if (!usuarioAtulizado) {
       return res.status(400).json({
         mensagem: 'O usuario não foi atualizado.'
       })
     }
 
     return res.status(200).json({
-      mensagem: 'Informações do usuario foi atualizado.'
+      mensagem: 'Usuário atualizado com sucesso.'
     })
   } catch (error) {
     return res.status(500).json({
