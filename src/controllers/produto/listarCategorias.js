@@ -1,6 +1,6 @@
 const knex = require('../../db/conexao');
 
-const listarCategorias = async (req, res) => {
+const listarCategoria = async (req, res) => {
     try {
         const categorias = await knex('categorias')
 
@@ -20,4 +20,6 @@ const listarCategorias = async (req, res) => {
     }
 };
 
-module.exports = listarCategorias;
+module.exports ={
+     listarCategoria
+} 
