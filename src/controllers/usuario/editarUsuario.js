@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt')
-const knex = require('../db/conexao')
+const knex = require('../../db/conexao')
 
 const editarUsuario = async ( req, res ) =>{
   const { nome , email, senha } = req.body;
