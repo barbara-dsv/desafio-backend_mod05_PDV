@@ -33,6 +33,6 @@ rotas.put('/usuario', validacaoReq(schemaEditarUsuario), editarUsuario);
 
 rotas.post('/produto', validacaoReq(schemaCadastrarProduto), cadastrarProduto);
 
-rotas.delete('/produto', excluirProduto);
+rotas.delete('/produto/:id', excluirProduto);
 
 module.exports = rotas
