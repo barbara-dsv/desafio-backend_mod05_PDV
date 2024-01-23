@@ -8,12 +8,13 @@ const schemaCadastroUsuario  =  require('./schema/schemaCadastroUsuarios');
 const schemaEditarUsuario    =  require('./schema/schemaEditarUsuario');
 const schemaCadastrarProduto =  require('./schema/schemaCadastrarProduto');
 
+const  detalharUsuario     =  require('./controllers/usuario/detalharUsuario');
 const { cadastrar }        =  require('./controllers/usuario/cadastrarUsuario');
 const { login }            =  require('./controllers/usuario/loginUsuario');
 const { editarUsuario }    =  require('./controllers/usuario/editarUsuario');
 const { listarCategoria }  =  require('./controllers/produto/listarCategorias');
 const { cadastrarProduto } =  require('./controllers/produto/cadastrarProduto');
-const  detalharUsuario     =  require('./controllers/usuario/detalharUsuario');
+
 
 const rotas = express();
 
