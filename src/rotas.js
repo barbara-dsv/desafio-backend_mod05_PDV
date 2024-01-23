@@ -7,11 +7,11 @@ const schemaLoginUsuario = require('./schema/schemaLoginUsuario');
 const schemaCadastroUsuario = require('./schema/schemaCadastroUsuarios');
 const schemaEditarUsuario = require('./schema/schemaEditarUsuario');
 
-const { cadastrar } = require('./controllers/cadastrarUsuario');
-const { login } = require('./controllers/loginUsuario');
-const detalharPerfil = require('./controllers/detalharUsuario');
-const { editarUsuario } = require('./controllers/editarUsuario')
-const listarCategorias = require('./controllers/listarCategorias');
+const { cadastrar } = require('./controllers/usuario/cadastrarUsuario');
+const { login } = require('./controllers/usuario/loginUsuario');
+const detalharPerfil = require('./controllers/usuario/detalharUsuario');
+const { editarUsuario } = require('./controllers/usuario/editarUsuario')
+const listarCategorias = require('./controllers/produto/listarCategorias');
 
 
 
@@ -27,6 +27,6 @@ rotas.use(auth);
 
 rotas.get('/usuario', detalharPerfil);
 
-rotas.put('/usuario', validacaoReq(schemaEditarUsuario) ,editarUsuario);
+rotas.put('/usuario', validacaoReq(schemaEditarUsuario), editarUsuario);
 
 module.exports = rotas
