@@ -8,9 +8,9 @@ const schemaLoginUsuario  = joi.object({
   }),
 
   senha : joi.string().min(5).required().messages({
-    'any.required' : 'O campo senha é obrigatório',
-	  'string.empty' : 'O campo senha é obrigatório',
-	  'string.min'   : 'A senha precisa conter no mínimo 5 caracteres',
+   'any.required' : 'O campo senha é obrigatório',
+   'string.empty' : 'O campo senha é obrigatório',
+   'string.min'   : 'A senha precisa conter no mínimo 5 caracteres',
   }),
 
 });
