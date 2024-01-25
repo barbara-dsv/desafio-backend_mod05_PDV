@@ -14,12 +14,16 @@ const schemaCadastroCliente = joi.object({
         'string.empty': 'O campo email é obrigatório',
         'string.pattern.base': 'O campo email quando preenchido não pode ser encaminhado vazio.',
     }),
-    cpf: joi.number().required().messages({
+    cpf: joi.string().min(11).max(11).required().messages({
+        'string.empty': 'O campo CPF é obrigatório',
         'any.required': 'O campo CPF é obrigatório',
-        'number.base': 'O campo CPF deve ter um formato válido, somente números'
+        'string.min': 'O campo CPF deve ter 11 dígitos',
+        'string.max': 'O campo CPF deve ter 11 dígitos'
     }),
-    cep: joi.number().messages({
-        'number.base': 'O campo deve ter um formato válido, somente números'
+    cep: joi.string().min(8).max(8).pattern(/.*\S.*/).messages({
+        'string.min': 'O campo CPF deve ter 8 dígitos',
+        'string.max': 'O campo CPF deve ter 8 dígitos',
+        'string.pattern.base': 'O campo CEP quando preenchido não pode ser encaminhado vazio'
 
     }),
     rua: joi.string().pattern(/.*\S.*/).messages({
