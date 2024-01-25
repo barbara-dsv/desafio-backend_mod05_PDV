@@ -18,6 +18,7 @@ const { cadastrarProduto } = require('./controllers/produto/cadastrarProduto');
 const { excluirProduto } = require('./controllers/produto/excluirProduto');
 const { listarClientes } = require('./controllers/usuario/listarClientes');
 const { cadastrarCliente } = require('./controllers/cliente/cadastrarCliente');
+const { listarProdutos } = require('./controllers/produto/listarProdutos');
 
 
 
@@ -32,6 +33,8 @@ rotas.post('/login', validacaoReq(schemaLoginUsuario), login);
 rotas.use(auth);
 
 rotas.get('/usuario', detalharUsuario);
+
+rotas.get('/produto/:id?', listarProdutos);
 
 rotas.put('/usuario', validacaoReq(schemaEditarUsuario), editarUsuario);
 
