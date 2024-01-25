@@ -16,7 +16,7 @@ const { editarUsuario } = require('./controllers/usuario/editarUsuario');
 const { listarCategoria } = require('./controllers/produto/listarCategorias');
 const { cadastrarProduto } = require('./controllers/produto/cadastrarProduto');
 const { excluirProduto } = require('./controllers/produto/excluirProduto');
-const { listarClientes } = require('./controllers/usuario/listarClientes');
+const { listarClientes } = require('./controllers/cliente/listarClientes');
 const { cadastrarCliente } = require('./controllers/cliente/cadastrarCliente');
 const { listarProdutos } = require('./controllers/produto/listarProdutos');
 
@@ -34,16 +34,24 @@ rotas.use(auth);
 
 rotas.get('/usuario', detalharUsuario);
 
-rotas.get('/produto/:id?', listarProdutos);
-
 rotas.put('/usuario', validacaoReq(schemaEditarUsuario), editarUsuario);
 
 rotas.post('/produto', validacaoReq(schemaCadastrarProduto), cadastrarProduto);
+
+//editar dados do produto
+
+rotas.get('/produto/:id?', listarProdutos);
+
+//detalhar produto
 
 rotas.delete('/produto/:id', excluirProduto);
 
 rotas.post('/cliente', validacaoReq(schemaCadastroCliente), cadastrarCliente)
 
+//editar dados do cliente
+
 rotas.get('/usuario', listarClientes);
+
+//detalhar cliente 
 
 module.exports = rotas
