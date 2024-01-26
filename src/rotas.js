@@ -50,7 +50,7 @@ rotas.post('/cliente', validacaoReq(schemaCadastroCliente), cadastrarCliente)
 
 //editar dados do cliente
 
-rotas.get('/usuario', listarClientes);
+rotas.get('/cliente', listarClientes);
 
 //detalhar cliente 
 
