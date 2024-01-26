@@ -19,7 +19,7 @@ const { excluirProduto } = require('./controllers/produto/excluirProduto');
 const { listarClientes } = require('./controllers/cliente/listarClientes');
 const { cadastrarCliente } = require('./controllers/cliente/cadastrarCliente');
 const { listarProdutos } = require('./controllers/produto/listarProdutos');
-
+const { editarProduto } = require('./controllers/produto/editarProduto');
 
 
 const rotas = express();
@@ -38,7 +38,7 @@ rotas.put('/usuario', validacaoReq(schemaEditarUsuario), editarUsuario);
 
 rotas.post('/produto', validacaoReq(schemaCadastrarProduto), cadastrarProduto);
 
-//editar dados do produto
+rotas.put('/produto/:id', editarProduto);
 
 rotas.get('/produto/', listarProdutos);
 
