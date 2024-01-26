@@ -2,7 +2,7 @@ const knex = require('../../db/conexao');
 
 const listarProdutos = async (req, res) => {
   try {
-    const categoria_id = req.params.id;
+    const categoria_id = req.query.categoria_id;
 
     // Se categoria não foi informado, retorna todos os produtos
     if (!categoria_id) {

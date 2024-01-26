@@ -40,7 +40,7 @@ rotas.post('/produto', validacaoReq(schemaCadastrarProduto), cadastrarProduto);
 
 //editar dados do produto
 
-rotas.get('/produto/:id?', listarProdutos);
+rotas.get('/produto/', listarProdutos);
 
 //detalhar produto
 
