@@ -21,8 +21,8 @@ const schemaCadastroCliente = joi.object({
         'string.max': 'O campo CPF deve ter 11 dígitos'
     }),
     cep: joi.string().min(8).max(8).pattern(/.*\S.*/).messages({
-        'string.min': 'O campo CPF deve ter 8 dígitos',
-        'string.max': 'O campo CPF deve ter 8 dígitos',
+        'string.min': 'O campo CEP deve ter 8 dígitos',
+        'string.max': 'O campo CEP deve ter 8 dígitos',
         'string.pattern.base': 'O campo CEP quando preenchido não pode ser encaminhado vazio'
 
     }),
