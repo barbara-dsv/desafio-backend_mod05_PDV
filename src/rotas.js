@@ -8,6 +8,7 @@ const schemaCadastroUsuario = require('./schema/schemaCadastroUsuarios');
 const schemaEditarUsuario = require('./schema/schemaEditarUsuario');
 const schemaCadastrarProduto = require('./schema/schemaCadastrarProduto');
 const schemaCadastroCliente = require('./schema/schemaCadastroCliente');
+const schemaEditarCliente = require('./schema/schemaEditarCliente');
 
 const detalharUsuario = require('./controllers/usuario/detalharUsuario');
 const { cadastrar } = require('./controllers/usuario/cadastrarUsuario');
@@ -20,6 +21,8 @@ const { listarClientes } = require('./controllers/cliente/listarClientes');
 const { cadastrarCliente } = require('./controllers/cliente/cadastrarCliente');
 const { listarProdutos } = require('./controllers/produto/listarProdutos');
 const { editarProduto } = require('./controllers/produto/editarProduto');
+const { editarCliente } = require('./controllers/cliente/editarCliente');
+
 
 
 const rotas = express();
@@ -50,7 +53,8 @@ rotas.post('/cliente', validacaoReq(schemaCadastroCliente), cadastrarCliente)
 
 //editar dados do cliente
 
-rotas.get('/cliente', listarClientes);
+rotas.put('/cliente/:id', validacaoReq(schemaEditarCliente), editarCliente)
+rotas.get('/clientes', listarClientes);
 
 //detalhar cliente 
 
