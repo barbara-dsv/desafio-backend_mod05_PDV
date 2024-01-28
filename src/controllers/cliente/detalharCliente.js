@@ -6,7 +6,7 @@ const detalharCliente = async (req, res) =>{
     if (!usuarioEncontrado) {
         return res.status(404).json('Usuario inválido')
         } else {
-            return res.status.json(usuarioEncontrado)
+            return res.status(200).json(usuarioEncontrado)
         }
     
     } catch (error) {

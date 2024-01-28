@@ -22,6 +22,7 @@ const { cadastrarCliente } = require('./controllers/cliente/cadastrarCliente');
 const { listarProdutos } = require('./controllers/produto/listarProdutos');
 const { editarProduto } = require('./controllers/produto/editarProduto');
 const { editarCliente } = require('./controllers/cliente/editarCliente');
+const { detalharCliente } = require('./controllers/cliente/detalharCliente')
 const { detalhar } = require('./controllers/produto/detalharProduto');
 
 
@@ -55,6 +56,7 @@ rotas.post('/cliente', validacaoReq(schemaCadastroCliente), cadastrarCliente)
 
 rotas.put('/cliente/:id', validacaoReq(schemaEditarCliente), editarCliente)
 rotas.get('/clientes', listarClientes);
+rotas.get('/cliente/:id', auth, detalharCliente )
 
 //detalhar cliente 
 
