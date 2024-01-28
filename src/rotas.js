@@ -7,6 +7,8 @@ const schemaLoginUsuario = require('./schema/schemaLoginUsuario');
 const schemaCadastroUsuario = require('./schema/schemaCadastroUsuarios');
 const schemaEditarUsuario = require('./schema/schemaEditarUsuario');
 const schemaCadastrarProduto = require('./schema/schemaCadastrarProduto');
+const schemaCadastroCliente = require('./schema/schemaCadastroCliente');
+const schemaEditarCliente = require('./schema/schemaEditarCliente');
 
 const detalharUsuario = require('./controllers/usuario/detalharUsuario');
 const { cadastrar } = require('./controllers/usuario/cadastrarUsuario');
@@ -15,7 +17,12 @@ const { editarUsuario } = require('./controllers/usuario/editarUsuario');
 const { listarCategoria } = require('./controllers/produto/listarCategorias');
 const { cadastrarProduto } = require('./controllers/produto/cadastrarProduto');
 const { excluirProduto } = require('./controllers/produto/excluirProduto');
-const { detalharCliente } = require('./controllers/clientes/detalharCliente')
+const { listarClientes } = require('./controllers/cliente/listarClientes');
+const { cadastrarCliente } = require('./controllers/cliente/cadastrarCliente');
+const { listarProdutos } = require('./controllers/produto/listarProdutos');
+const { editarProduto } = require('./controllers/produto/editarProduto');
+const { editarCliente } = require('./controllers/cliente/editarCliente');
+const { detalhar } = require('./controllers/produto/detalharProduto');
 
 
 const rotas = express();
@@ -34,8 +41,21 @@ rotas.put('/usuario', validacaoReq(schemaEditarUsuario), editarUsuario);
 
 rotas.post('/produto', validacaoReq(schemaCadastrarProduto), cadastrarProduto);
 
+rotas.get('/produto/:id', detalhar);
+
+rotas.put('/produto/:id', editarProduto);
+
+rotas.get('/produtos', listarProdutos);
+
 rotas.delete('/produto/:id', excluirProduto);
 
-rotas.get('/cliente/:id', auth, detalharCliente)
+rotas.post('/cliente', validacaoReq(schemaCadastroCliente), cadastrarCliente)
+
+//editar dados do cliente
+
+rotas.put('/cliente/:id', validacaoReq(schemaEditarCliente), editarCliente)
+rotas.get('/clientes', listarClientes);
+
+//detalhar cliente 
 
 module.exports = rotas
