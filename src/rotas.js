@@ -56,7 +56,7 @@ rotas.post('/cliente', validacaoReq(schemaCadastroCliente), cadastrarCliente)
 
 rotas.put('/cliente/:id', validacaoReq(schemaEditarCliente), editarCliente)
 rotas.get('/clientes', listarClientes);
-rotas.get('/cliente/:id', auth, detalharCliente )
+rotas.get('/cliente/:id', detalharCliente)
 
 //detalhar cliente 
 
