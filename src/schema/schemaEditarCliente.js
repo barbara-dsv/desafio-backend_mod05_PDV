@@ -1,21 +1,18 @@
 const joi = require('joi');
 
 const schemaEditarCliente = joi.object({
-    nome: joi.string().required().messages({
-        'any.required': 'O campo nome precisa ser preenchido.',
+    nome: joi.string().messages({
         'string.empty': 'O campo nome precisa ser preenchido.'
     }),
 
-    email: joi.string().email().required().messages({
-        'any.required': 'O campo email precisa ser preenchido.',
+    email: joi.string().email().messages({
         'string.email': 'O campo email deve ter um formato válido.',
         'string.empty': 'O campo email precisa ser preenchido'
     }),
 
-    cpf: joi.string().required().min(11).max(11).messages({
-        'string.min':  'O campo cpf deve conter no mínimo 14 caracteres.',
-        'string.max':  'O campo cpf deve conter no máximo 14 caracteres.',
-        'any.required': 'O campo cpf precisa ser preenchido.',
+    cpf: joi.string().min(11).max(11).messages({
+        'string.min': 'O campo cpf deve conter no mínimo 11 caracteres.',
+        'string.max': 'O campo cpf deve conter no máximo 11 caracteres.',
         'string.empty': 'O campo cpf precisa ser preenchido'
     }),
     cep: joi.string().min(8).max(8).pattern(/.*\S.*/).messages({
