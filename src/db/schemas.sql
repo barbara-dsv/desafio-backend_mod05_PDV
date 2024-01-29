@@ -45,3 +45,24 @@ CREATE TABLE clientes(
 
 ALTER TABLE produtos 
 ALTER COLUMN valor TYPE NUMERIC(10,2)
+
+ CREATE TABLE pedidos (
+  id SERIAL PRIMARY KEY,
+  cliente_id INT,
+  FOREIGN KEY (cliente_id) REFERENCES clientes(id),
+  observacao VARCHAR(255),
+  valor_total INT
+);
+
+CREATE TABLE pedido_produtos(
+  id SERIAL PRIMARY KEY,
+  pedido_id INT, 
+  FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
+  produto_id INT, 
+  FOREIGN KEY (produto_id) REFERENCES produtos(id),
+  quantidade_produto INT, 
+  valor_produto INT
+  );
+
+ALTER TABLE produtos
+ADD COLUMN produto_imagem TEXT;
