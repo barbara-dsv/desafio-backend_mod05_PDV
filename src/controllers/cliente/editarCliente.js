@@ -26,9 +26,19 @@ const editarCliente = async (req, res) => {
             }
         }
 
-        const cliente = await knex('clientes')
-            .update({ nome, email, cpf, cep, rua, numero, bairro, cidade, estado })
-            .where({ id }).returning('*');
+        const cliente = await knex('clientes').where({ id })
+            .update({
+                nome,
+                email,
+                cpf,
+                cep,
+                rua,
+                numero,
+                bairro,
+                cidade,
+                estado 
+                })
+            .returning('*');
 
         if (!cliente) {
             return res.status(404).json('não foi possivel atualizar o cliente');
@@ -38,7 +48,9 @@ const editarCliente = async (req, res) => {
 
     } catch (error) {
         console.log(error.message)
-        return res.status(500).json({ mensagem: 'Erro interno do servidor.' })
+        return res.status(500).json({ 
+            mensagem: 'Erro interno do servidor.' 
+        })
     }
 }
 

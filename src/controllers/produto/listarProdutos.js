@@ -4,7 +4,6 @@ const listarProdutos = async (req, res) => {
   try {
     const categoria_id = req.query.categoria_id;
 
-    // Se categoria não foi informado, retorna todos os produtos
     if (!categoria_id) {
       const todosProdutos = await knex('produtos');
 
@@ -16,8 +15,7 @@ const listarProdutos = async (req, res) => {
 
       return res.status(200).json(todosProdutos);
     }
-
-    // Se categoria foi informado, verifica se a categoria existe
+   
     const categoria = await knex('categorias').where({ id: categoria_id }).first();
 
     if (!categoria) {
@@ -26,7 +24,6 @@ const listarProdutos = async (req, res) => {
       });
     }
 
-    // Se a categoria existe, filtra os produtos de acordo com a categoria
     const produtos = await knex('produtos').where({ categoria_id });
 
     if (produtos.length === 0) {

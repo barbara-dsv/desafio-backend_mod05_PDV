@@ -24,7 +24,6 @@ const editarUsuario = async (req, res) => {
 
     }
 
-
     if (senha) {
       senhaCript = await bcrypt.hash(senha, 10);
     }

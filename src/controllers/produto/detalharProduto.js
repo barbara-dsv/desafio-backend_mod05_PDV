@@ -6,7 +6,6 @@ const detalhar = async (req, res) => {
   try {
     const produto = await knex('produtos').where({ id }).first();
 
-    // Verificar se o produto não foi encontrado
     if (!produto) {
       return res.status(404).json({
         mensagem: 'Produto não encontrado.'

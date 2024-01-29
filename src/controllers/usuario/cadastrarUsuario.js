@@ -4,7 +4,6 @@ const knex = require('../../db/conexao');
 const cadastrar = async (req, res) => {
   const { nome, email, senha } = req.body
 
-
   try {
 
     const emailRegistrado = await knex('usuarios').where({ email }).first();
