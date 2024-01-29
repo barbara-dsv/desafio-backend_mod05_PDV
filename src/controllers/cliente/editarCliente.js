@@ -10,21 +10,20 @@ const editarCliente = async (req, res) => {
         if (!clienteExiste) {
             return res.status(404).json('cliente não encontrado')
         }
-        if (email) {
-            const emailRegistrado = await knex('clientes').where({ email }).andWhereNot({ id }).first();
 
-            if (emailRegistrado) {
-                return res.status(400).json({ mensagem: 'Email já cadastrado' })
-            }
+        const emailRegistrado = await knex('clientes').where({ email }).andWhereNot({ id }).first();
+
+        if (emailRegistrado) {
+            return res.status(400).json({ mensagem: 'Email já cadastrado' })
         }
 
-        if (cpf) {
-            const cpfRegistrado = await knex('clientes').where({ cpf }).andWhereNot({ id }).first();
 
-            if (cpfRegistrado) {
-                return res.status(400).json({ mensagem: 'CPF já cadastrado' })
-            }
+        const cpfRegistrado = await knex('clientes').where({ cpf }).andWhereNot({ id }).first();
+
+        if (cpfRegistrado) {
+            return res.status(400).json({ mensagem: 'CPF já cadastrado' })
         }
+
 
         const cliente = await knex('clientes').where({ id })
             .update({
@@ -36,8 +35,8 @@ const editarCliente = async (req, res) => {
                 numero,
                 bairro,
                 cidade,
-                estado 
-                })
+                estado
+            })
             .returning('*');
 
         if (!cliente) {
@@ -48,8 +47,8 @@ const editarCliente = async (req, res) => {
 
     } catch (error) {
         console.log(error.message)
-        return res.status(500).json({ 
-            mensagem: 'Erro interno do servidor.' 
+        return res.status(500).json({
+            mensagem: 'Erro interno do servidor.'
         })
     }
 }
