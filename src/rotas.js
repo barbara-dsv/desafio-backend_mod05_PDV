@@ -3,12 +3,10 @@ const express = require('express');
 const validacaoReq = require('./middleware/validacaoReq');
 const auth = require('./middleware/autenticacao');
 
-const schemaLoginUsuario     =  require('./schema/schemaLoginUsuario');
-const schemaCadastroUsuario  =  require('./schema/schemaCadastroUsuarios');
-const schemaEditarUsuario    =  require('./schema/schemaEditarUsuario');
-const schemaCadastrarProduto =  require('./schema/schemaCadastrarProduto');
-const schemaCadastroCliente  =  require('./schema/schemaCadastroCliente');
-const schemaEditarCliente    =  require('./schema/schemaEditarCliente');
+const schemaLoginUsuario  =  require('./schema/schemaLoginUsuario');
+const schemaUsuario       =  require('./schema/schemaUsuario');
+const schemaProduto       =  require('./schema/schemaProduto');
+const schemaCliente       =  require('./schema/schemaCliente');
 
 const detalharUsuario      =  require('./controllers/usuario/detalharUsuario');
 const { cadastrar }        =  require('./controllers/usuario/cadastrarUsuario');
@@ -30,7 +28,7 @@ const rotas = express();
 
 rotas.get('/categoria', listarCategoria);
 
-rotas.post('/usuario', validacaoReq(schemaCadastroUsuario), cadastrar);
+rotas.post('/usuario', validacaoReq(schemaUsuario), cadastrar);
 
 rotas.post('/login', validacaoReq(schemaLoginUsuario), login);
 
@@ -38,23 +36,23 @@ rotas.use(auth);
 
 rotas.get('/usuario', detalharUsuario);
 
-rotas.put('/usuario', validacaoReq(schemaEditarUsuario), editarUsuario);
+rotas.put('/usuario', validacaoReq(schemaUsuario), editarUsuario);
 
-rotas.post('/produto', validacaoReq(schemaCadastrarProduto), cadastrarProduto);
+rotas.post('/produto', validacaoReq(schemaProduto), cadastrarProduto);
 
 rotas.get('/produto/:id', detalhar);
 
-rotas.put('/produto/:id', editarProduto);
+rotas.put('/produto/:id',validacaoReq(schemaProduto), editarProduto);
 
 rotas.get('/produtos', listarProdutos);
 
 rotas.delete('/produto/:id', excluirProduto);
 
-rotas.post('/cliente', validacaoReq(schemaCadastroCliente), cadastrarCliente)
+rotas.post('/cliente', validacaoReq(schemaCliente), cadastrarCliente)
 
 //editar dados do cliente
 
-rotas.put('/cliente/:id', validacaoReq(schemaEditarCliente), editarCliente)
+rotas.put('/cliente/:id', validacaoReq(schemaCliente), editarCliente)
 rotas.get('/clientes', listarClientes);
 rotas.get('/cliente/:id', detalharCliente)
 

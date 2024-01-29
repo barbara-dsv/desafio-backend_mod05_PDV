@@ -3,18 +3,11 @@ const knex = require('../../db/conexao');
 
 const editarUsuario = async (req, res) => {
   const { nome, email, senha } = req.body;
-  let senhaCript
-
-  if (!nome && !email && !senha) {
-    return res.status(400).json({
-      mensagem: 'Ao menos um campo deve ser informado.'
-    })
-  }
+  
 
   try {
 
-    if (email) {
-      const emailJaCadastrado = await knex('usuarios').where({ email }).first();
+      const emailJaCadastrado = await knex('usuarios').where({ email }).andWhereNot({ id:req.usuario.id }).first();
 
       if (emailJaCadastrado) {
         return res.status(400).json({
@@ -22,16 +15,12 @@ const editarUsuario = async (req, res) => {
         })
       }
 
-    }
-
-    if (senha) {
-      senhaCript = await bcrypt.hash(senha, 10);
-    }
+    const senhaCriptografada = await bcrypt.hash(senha, 10);
 
     const usuarioAtulizado = await knex('usuarios').where({ id: req.usuario.id }).update({
       nome,
       email,
-      senha: senhaCript
+      senha: senhaCriptografada
     })
 
     if (!usuarioAtulizado) {

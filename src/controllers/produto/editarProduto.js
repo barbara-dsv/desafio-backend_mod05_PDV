@@ -5,12 +5,6 @@ const editarProduto = async (req, res) => {
     const { id } = req.params;
     const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
 
-    if(!descricao && !quantidade_estoque && !valor && !categoria_id){
-        return res.status(400).json({
-          mensagem: 'Ao menos um campo deve ser informado.'
-        });
-      }
-
     try {
         const produtoExistente = await knex('produtos').where({ id }).first();
 

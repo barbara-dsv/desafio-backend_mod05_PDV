@@ -1,6 +1,6 @@
 const joi = require('joi');
 
-const schemaCadastrarProduto = joi.object({
+const schemaProduto = joi.object({
   descricao: joi.string().pattern(/.*\S.*/).required().messages({
     'string.pattern.base' : 'O campo descrição quando preenchido não pode ser encaminhado vazio.',
     'any.required'        : 'O campo descrição é obrigatório.',
@@ -24,4 +24,4 @@ const schemaCadastrarProduto = joi.object({
   })
 })
 
-module.exports = schemaCadastrarProduto
+module.exports = schemaProduto

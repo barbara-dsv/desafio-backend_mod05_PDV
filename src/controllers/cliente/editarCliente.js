@@ -11,7 +11,7 @@ const editarCliente = async (req, res) => {
             return res.status(404).json('cliente não encontrado')
         }
         if (email) {
-            const emailRegistrado = await knex('clientes').where({ email }).first()
+            const emailRegistrado = await knex('clientes').where({ email }).andWhereNot({ id }).first();
 
             if (emailRegistrado) {
                 return res.status(400).json({ mensagem: 'Email já cadastrado' })
@@ -19,7 +19,7 @@ const editarCliente = async (req, res) => {
         }
 
         if (cpf) {
-            const cpfRegistrado = await knex('clientes').where({ cpf }).first()
+            const cpfRegistrado = await knex('clientes').where({ cpf }).andWhereNot({ id }).first();
 
             if (cpfRegistrado) {
                 return res.status(400).json({ mensagem: 'CPF já cadastrado' })
