@@ -7,6 +7,7 @@ const schemaLoginUsuario = require('./schema/schemaLoginUsuario');
 const schemaUsuario = require('./schema/schemaUsuario');
 const schemaProduto = require('./schema/schemaProduto');
 const schemaCliente = require('./schema/schemaCliente');
+const schemaPedido  = require('./schema/schemaPedido');
 
 const detalharUsuario = require('./controllers/usuario/detalharUsuario');
 const { cadastrar } = require('./controllers/usuario/cadastrarUsuario');
@@ -22,6 +23,8 @@ const { editarProduto } = require('./controllers/produto/editarProduto');
 const { editarCliente } = require('./controllers/cliente/editarCliente');
 const { detalharCliente } = require('./controllers/cliente/detalharCliente')
 const { detalhar } = require('./controllers/produto/detalharProduto');
+const { cadastrarPedido } = require('./controllers/pedido/cadastrarPedido');
+
 
 
 const rotas = express();
@@ -56,5 +59,6 @@ rotas.get('/clientes', listarClientes);
 
 rotas.get('/cliente/:id', detalharCliente)
 
+rotas.put('/pedido', validacaoReq(schemaPedido), cadastrarPedido);
 
 module.exports = rotas
