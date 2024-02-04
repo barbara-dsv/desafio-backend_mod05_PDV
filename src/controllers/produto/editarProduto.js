@@ -1,4 +1,5 @@
 const knex = require('../../db/conexao');
+const { excluirImagem, uploadImagem } = require('../../servicos/uploads');
 
 const editarProduto = async (req, res) => {
 
@@ -14,6 +15,8 @@ const editarProduto = async (req, res) => {
                 mensagem: 'Produto não encontrado.'
             });
         }
+        //console.log(produtoExistente.descricao)
+
 
         const verificaCategoria = await knex('categorias').where('id', categoria_id).first();
 
@@ -23,6 +26,22 @@ const editarProduto = async (req, res) => {
                 mensagem: 'Categoria informada não existe.'
             });
         }
+        if (req.file) {
+            const { originalname, mimetype, buffer } = req.file
+
+            await excluirImagem(produtoExistente.produto_imagem)
+
+            const upload = await uploadImagem(
+                `produtos/${produtoExistente.id}/${originalname}`,
+                buffer,
+                mimetype
+            )
+
+            const editarImagem = await knex('produtos').where({ id }).update({
+                produto_imagem: upload.url
+            })
+        }
+
 
         const produtoAtualizado = await knex('produtos')
             .where({ id })
@@ -44,7 +63,7 @@ const editarProduto = async (req, res) => {
             mensagem: 'Produto atualizado com sucesso.'
         });
     } catch (error) {
-
+        console.log(error)
         return res.status(500).json({
             mensagem: 'Erro interno do servidor.'
         });
