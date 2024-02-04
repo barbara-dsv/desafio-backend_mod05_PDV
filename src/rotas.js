@@ -46,7 +46,7 @@ rotas.post('/produto', multer.single('imagem'), validacaoReq(schemaProduto), cad
 
 rotas.get('/produto/:id', detalhar);
 
-rotas.put('/produto/:id', validacaoReq(schemaProduto), editarProduto);
+rotas.put('/produto/:id', multer.single('imagem'), validacaoReq(schemaProduto), editarProduto);
 
 rotas.get('/produtos', listarProdutos);
 
