@@ -40,7 +40,6 @@ const cadastrarProduto = async (req, res) => {
     return res.status(201).json(cadastraProduto[0]);
 
   } catch (error) {
-    console.log(error)
     return res.status(500).json({
       mensagem: 'Erro interno do servidor.'
     })
