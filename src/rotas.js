@@ -2,12 +2,13 @@ const express = require('express');
 
 const validacaoReq = require('./middleware/validacaoReq');
 const auth = require('./middleware/autenticacao');
+const multer = require('./middleware/multer')
 
 const schemaLoginUsuario = require('./schema/schemaLoginUsuario');
 const schemaUsuario = require('./schema/schemaUsuario');
 const schemaProduto = require('./schema/schemaProduto');
 const schemaCliente = require('./schema/schemaCliente');
-const schemaPedido  = require('./schema/schemaPedido');
+const schemaPedido = require('./schema/schemaPedido');
 
 const detalharUsuario = require('./controllers/usuario/detalharUsuario');
 const { cadastrar } = require('./controllers/usuario/cadastrarUsuario');
@@ -41,7 +42,7 @@ rotas.get('/usuario', detalharUsuario);
 
 rotas.put('/usuario', validacaoReq(schemaUsuario), editarUsuario);
 
-rotas.post('/produto', validacaoReq(schemaProduto), cadastrarProduto);
+rotas.post('/produto', multer.single('imagem'), validacaoReq(schemaProduto), cadastrarProduto);
 
 rotas.get('/produto/:id', detalhar);
 
