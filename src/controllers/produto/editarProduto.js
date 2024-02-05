@@ -15,8 +15,6 @@ const editarProduto = async (req, res) => {
                 mensagem: 'Produto não encontrado.'
             });
         }
-        //console.log(produtoExistente.descricao)
-
 
         const verificaCategoria = await knex('categorias').where('id', categoria_id).first();
 
