@@ -1,6 +1,7 @@
 const knex = require('../../db/conexao');
 const aws = require('aws-sdk');
 
+
 const s3 = new aws.S3({
     endpoint: new aws.Endpoint(`https://${process.env.ENDPOINT_BACKBLAZE}`),
     credentials: {
@@ -18,6 +19,16 @@ const excluirProduto = async (req, res) => {
     if (!produto) {
       return res.status(404).json({
         mensagem: 'Produto não encontrado.'
+      });
+    }
+
+    const pedidoCadastrado = await knex('pedido_produtos').where('produto_id', id).first();
+
+    console.log(pedidoCadastrado)
+
+    if (pedidoCadastrado) {
+      return res.status(400).json({
+        mensagem: 'O produto está cadastrado em um pedido e não pode ser excluído.'
       });
     }
 
