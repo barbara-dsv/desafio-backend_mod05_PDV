@@ -26,8 +26,9 @@ const editarProduto = async (req, res) => {
         }
         if (req.file) {
             const { originalname, mimetype, buffer } = req.file
-
-            await excluirImagem(produtoExistente.produto_imagem)
+            if (produtoExistente.produto_imagem !== null) {
+                await excluirImagem(produtoExistente.produto_imagem)
+            }
 
             const upload = await uploadImagem(
                 `produtos/${produtoExistente.id}/${originalname}`,
