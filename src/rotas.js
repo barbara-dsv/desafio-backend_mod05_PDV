@@ -25,6 +25,7 @@ const { editarCliente } = require('./controllers/cliente/editarCliente');
 const { detalharCliente } = require('./controllers/cliente/detalharCliente')
 const { detalhar } = require('./controllers/produto/detalharProduto');
 const { cadastrarPedido } = require('./controllers/pedido/cadastrarPedido');
+const listarPedido = require('./controllers/pedido/listarPedido');
 
 
 
@@ -61,5 +62,7 @@ rotas.get('/clientes', listarClientes);
 rotas.get('/cliente/:id', detalharCliente)
 
 rotas.put('/pedido', validacaoReq(schemaPedido), cadastrarPedido);
+
+rotas.get('pedido?:cliente_id', listarPedido)
 
 module.exports = rotas
