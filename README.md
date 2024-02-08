@@ -554,4 +554,5 @@ Critérios de aceite:
 
 ###### tags: `back-end` `módulo 5` `nodeJS` `PostgreSQL` `API REST` `desafio`
 
-#Grupo 3
+#Grupo 3 - The Ximbinhas 
+#deploy : https://desafio-backend-modulo-05-sistema-pdv-dds13-dbe04-apagecgl2.vercel.app/
