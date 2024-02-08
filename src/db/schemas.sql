@@ -43,8 +43,6 @@ CREATE TABLE clientes(
     estado VARCHAR(255)
 );
 
-ALTER TABLE produtos 
-ALTER COLUMN valor TYPE NUMERIC(10,2)
 
  CREATE TABLE pedidos (
   id SERIAL PRIMARY KEY,
