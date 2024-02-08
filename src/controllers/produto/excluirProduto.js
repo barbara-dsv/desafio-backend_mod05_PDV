@@ -5,7 +5,6 @@ const excluirProduto = async (req, res) => {
   const { id } = req.params;
 
   try {
-    // Obter o produto, incluindo o nome da imagem associada a ele
     const produto = await knex('produtos').where({ id }).first();
 
     if (!produto) {
@@ -26,7 +25,6 @@ const excluirProduto = async (req, res) => {
       await excluirImagem(produto.produto_imagem)
     }
 
-    // Excluir o produto do banco de dados
     await knex('produtos').where({ id }).del();
 
     return res.status(204).send();
