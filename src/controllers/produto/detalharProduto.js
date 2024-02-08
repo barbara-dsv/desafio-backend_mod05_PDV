@@ -15,7 +15,6 @@ const detalhar = async (req, res) => {
     return res.status(200).json(produto);
 
   } catch (error) {
-    console.error(error);
     return res.status(500).json({
       mensagem: 'Erro interno do servidor.'
     });
