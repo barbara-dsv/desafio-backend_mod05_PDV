@@ -61,8 +61,8 @@ rotas.get('/clientes', listarClientes);
 
 rotas.get('/cliente/:id', detalharCliente)
 
-rotas.put('/pedido', validacaoReq(schemaPedido), cadastrarPedido);
+rotas.post('/pedido', validacaoReq(schemaPedido), cadastrarPedido);
 
-rotas.get('pedido?:cliente_id', listarPedido)
+rotas.get('/pedido?:cliente_id', listarPedido)
 
 module.exports = rotas
