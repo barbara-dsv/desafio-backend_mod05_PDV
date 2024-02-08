@@ -28,7 +28,6 @@ const cadastrarPedido = async (req, res)=>{
     
     for (const item of pedido_produtos) {
         const produto = await knex('produtos').where('id', item.produto_id);
-        console.log(produto[0])
 
         if (produtoNaoExistente.length > 0) { 
             return res.status(400).json({
@@ -79,7 +78,6 @@ const cadastrarPedido = async (req, res)=>{
       return res.status(200).json({ mensagem: 'Pedido cadastrado com sucesso!'});
   
   } catch (error) {
-    console.log(error)
       return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
   }
     
