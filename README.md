@@ -5,8 +5,71 @@
 
 Seja bem vindo(a) ao desafio do módulo 5.
 
-Sua tarefa como desenvolvedor(a) será criar uma API para um PDV (Frente de Caixa). Esse será um projeto piloto, ou seja, no futuro outras funcionalidades serão implementadas.
+O projeto é uma API para um PDV (Frente de Caixa). Esse será um projeto piloto, ou seja, no futuro outras funcionalidades serão implementadas.
 
+O projeto foi realiazado em equipe. Participantes:
+
+Ubirajara Santana (@birasants)
+Dionata Lima (@DionataLima)
+Maicon Fernando (@Fernando-ctdev)
+Iorran (@Iorran19)
+Kivyan Avila (@Kivyan)
+
+**Observação:** O projeto já foi entrege a escola e corrigido. 
+
+## Passos para rodar o projeto localmente
+
+### 1. Clonar o repositório
+
+Primeiro, você deve clonar o repositório na sua máquina local:
+
+```bash
+git clone https://github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
+```
+
+### 2. Instalar dependências 
+
+Instale as dependências do projeto utilizando o npm:
+
+```bash
+npm install
+```
+
+### 3. Configurar o arquivo .env
+
+O projeto utiliza variáveis de ambiente para a configuração. Renomeie o arquivo .env.example para .env:
+
+```bash
+cp .env.example .env
+```
+
+Em seguida, preencha o arquivo .env com as informações necessárias, como:
+
+```bash
+DB_HOST=localhost
+DB_USER=seu_usuario
+DB_PASSWORD=sua_senha
+JWT_SECRET=sua_chave_secreta
+```
+
+### 4. Rodar o servidor
+Agora, você pode iniciar o servidor com o seguinte comando:
+
+```bash
+npm run dev
+```
+
+Isso irá rodar o servidor localmente. O projeto estará disponível na URL padrão http://localhost:3000 (ou a porta configurada no .env).
+
+### 5. Utilizando as rotas
+Para testar as rotas da API, você pode utilizar o Insomnia ou qualquer outro cliente REST API:
+
+ 1. Abra o Insomnia.
+ 2. Adicione manualmente as rotas da API e o endereço base: http://localhost:3000.
+ 3. Teste as rotas conforme necessário.
+
+# Projeto Back-end
 
 **Importante 1: Sempre que a validação de uma requisição falhar, responda com código de erro e mensagem adequada à situação, ok?**
 
@@ -541,15 +604,6 @@ Critérios de aceite:
 </details>
 
 ---
-
-## Aulas úteis:
-
--   [Revisão](https://aulas.cubos.academy/turma/503b31f6-db13-4a79-8c3f-132b3d44e96f/aulas/9c29ca80-51cc-4f74-86a3-d27cee05fc48)
--   [Git e fluxo de trabalho em equipe](https://aulas.cubos.academy/turma/503b31f6-db13-4a79-8c3f-132b3d44e96f/aulas/2044890a-5d35-442a-85b1-f8481589a1a9)
--   [Deploy](https://aulas.cubos.academy/turma/503b31f6-db13-4a79-8c3f-132b3d44e96f/aulas/9be7d540-8f4d-4922-9e42-663656bd2475)
--   [Envio de e-mails](https://aulas.cubos.academy/turma/503b31f6-db13-4a79-8c3f-132b3d44e96f/aulas/9b85ed35-9833-444a-a424-80d6eeeeccbc)
--   [Validações e boas práticas](https://aulas.cubos.academy/turma/503b31f6-db13-4a79-8c3f-132b3d44e96f/aulas/61394330-479c-42de-ba1c-176f712990e5)
--   [Upload de arquivos](https://aulas.cubos.academy/turma/503b31f6-db13-4a79-8c3f-132b3d44e96f/aulas/f2821d48-b7b7-486a-8158-afacb145509f)
 
 
 ###### tags: `back-end` `módulo 5` `nodeJS` `PostgreSQL` `API REST` `desafio`
